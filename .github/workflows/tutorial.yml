@@ -24,7 +24,7 @@ jobs:
       uses: redhat-actions/buildah-build@v2
       with:
         image: docker-oci-workshop
-        tags: v1 ${{ github.sha }}
+        tags: branch-${{ github.ref_name}} ${{ github.sha }}
         containerfiles: ./example.containerfile
     - name: Log in to ghcr.io
       uses: redhat-actions/podman-login@v1
