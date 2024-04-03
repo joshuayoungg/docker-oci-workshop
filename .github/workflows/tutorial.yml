@@ -19,7 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Buildah Action
+    - name: Build image
+      id: build_image
       uses: redhat-actions/buildah-build@v2
       with:
         image: my-new-image
@@ -31,18 +32,6 @@ jobs:
         username: ${{ env.REGISTRY_USER }}
         password: ${{ env.REGISTRY_PASSWORD }}
         registry: ${{ env.IMAGE_REGISTRY }}
-    - name: Build Image
-      id: build_image
-      uses: redhat-actions/buildah-build@v2
-      with:
-        image: ${{ env.IMAGE_NAME }}
-        tags: ${{ env.IMAGE_TAGS }}
-        base-image: busybox:latest
-        entrypoint: |
-          bash
-          -c
-          echo 'hello world'
-        oci: true
     - name: Push To GHCR
       uses: redhat-actions/push-to-registry@v2
       id: push
