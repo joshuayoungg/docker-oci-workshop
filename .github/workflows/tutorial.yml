@@ -43,3 +43,5 @@ jobs:
         password: ${{ env.REGISTRY_PASSWORD }}
         extra-args: |
           --disable-content-trust
+    - name: Run the image
+      run: docker run ghcr.io/joshuayoungg/docker-oci-workshop:4b6f5e69784b39cb197a4814b06547e341e8b560 -v ${{ github.workspace }}:/workspace -w /workspace build.bash
