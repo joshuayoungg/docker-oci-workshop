@@ -44,4 +44,4 @@ jobs:
         extra-args: |
           --disable-content-trust
     - name: Run the image
-      run: docker run ghcr.io/joshuayoungg/docker-oci-workshop:4b6f5e69784b39cb197a4814b06547e341e8b560 -v ${{ github.workspace }}:/workspace -w /workspace build.bash
+      run: docker run -v ${{ github.workspace }}:/ociworkshop/workspace -w /ociworkshop/workspace "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}" bash -c "mv /ociworkshop/node_modules/ /ociworkshop/workspace/ && npm run build"
